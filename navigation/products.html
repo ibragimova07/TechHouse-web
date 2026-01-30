@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechHouse Pro - Products</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f1f3f6;
+      }
+
+      .nav1 {
+        width: 100%;
+        min-height: 70px;
+        background-color: rgb(15, 61, 92);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 50px;
+        position: sticky;
+        top: 0;
+        z-index: 1001;
+      }
+
+      .navlog {
+        font-size: 24px;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+
+      .search-bar {
+        position: relative;
+        flex: 1;
+        max-width: 500px;
+        margin: 0 20px;
+      }
+
+      .search-bar input {
+        padding: 9px 15px 9px 40px;
+        border-radius: 20px;
+        border: none;
+        width: 100%;
+      }
+
+      .search-bar i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #777;
+        pointer-events: none;
+      }
+
+      .icons {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        align-items: center;
+        white-space: nowrap;
+      }
+
+      .icons a {
+        color: white;
+        padding: 8px;
+        text-decoration: none;
+      }
+
+      .icons a:hover {
+        background-color: white;
+        color: rgb(15, 61, 92);
+        border-radius: 20px;
+      }
+
+      .nav2 {
+        width: 100%;
+        min-height: 60px;
+        background-color: #fffafa;
+        color: rgb(15, 61, 92);
+        display: flex;
+        align-items: center;
+        padding: 0 50px;
+        position: sticky;
+        top: 70px;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu {
+        display: flex;
+        margin: auto;
+        list-style: none;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .menu a {
+        padding: 9px 15px;
+        color: rgb(15, 61, 92);
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.3s;
+      }
+
+      .menu a:hover,
+      .active {
+        background-color: rgb(15, 61, 92);
+        color: white !important;
+        border-radius: 8px;
+      }
+
+      #active {
+        background-color: rgb(15, 61, 92);
+        color: white;
+        border-radius: 8px;
+      }
+      @media (max-width: 768px) {
+        .nav1 {
+          padding: 0 20px;
+        }
+
+        .navlog {
+          font-size: 18px;
+        }
+
+        .search-bar {
+          max-width: 300px;
+          margin: 0 10px;
+        }
+
+        .icons {
+          gap: 10px;
+          font-size: 14px;
+        }
+
+        .nav2 {
+          padding: 0 20px;
+        }
+
+        .menu {
+          gap: 15px;
+        }
+
+        .menu a {
+          padding: 7px 12px;
+          font-size: 14px;
+        }
+        .menu a:hover {
+          background-color: rgb(15, 61, 92);
+          color: white;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav1 {
+          padding: 0 10px;
+        }
+
+        .navlog {
+          font-size: 16px;
+        }
+
+        .search-bar {
+          max-width: 150px;
+          margin: 0 5px;
+        }
+
+        .search-bar input {
+          font-size: 12px;
+        }
+
+        .icons {
+          gap: 8px;
+          font-size: 12px;
+        }
+
+        .menu {
+          gap: 8px;
+        }
+
+        .menu a {
+          padding: 6px 10px;
+          font-size: 12px;
+        }
+      }
+      .container {
+        display: flex;
+        max-width: 1400px;
+        margin: 20px auto;
+        padding: 0 20px;
+        gap: 30px;
+      }
+      .sidebar {
+        position: sticky;
+        top: 90px;
+        width: 260px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        height: fit-content;
+      }
+      .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .filter-header h2 {
+        font-size: 18px;
+      }
+      .reset-btn {
+        color: #3498db;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .filter-section {
+        margin-bottom: 25px;
+      }
+
+      .filter-section b {
+        display: block;
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: #333;
+      }
+
+      .filter-section li {
+        list-style: none;
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      hr {
+        border: 0;
+        border-top: 1px solid #eee;
+        margin: 15px 0;
+      }
+      .main-content {
+        flex: 1;
+      }
+      .results-meta {
+        margin-bottom: 15px;
+        color: #666;
+        font-size: 14px;
+      }
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+      }
+      .product-card {
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        overflow: hidden;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+      }
+      .product-card:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transform: translate(-1px, -1px) scale(1.05);
+      }
+      .product-card img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        background: #fdfdfd;
+      }
+      .product-info {
+        padding: 15px;
+      }
+      .brand-name {
+        font-size: 12px;
+        color: #999;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      .product-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 5px 0;
+        color: #222;
+        height: 40px;
+        overflow: hidden;
+      }
+      .rating {
+        color: #f1c40f;
+        margin: 8px 0;
+      }
+
+      .rating span {
+        color: #999;
+        margin-left: 5px;
+      }
+      .location-grid li {
+        list-style: none;
+      }
+      .location-grid a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .blearn {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .blearn a {
+        text-decoration: none;
+        padding: 5px 40px;
+        border-radius: 20px;
+        border: none;
+        background-color: rgb(15, 61, 92);
+        color: white;
+        font-size: 16px;
+      }
+      .blearn a:hover {
+        background-color: white;
+        color: rgb(15, 61, 92);
+        border: 1px solid rgb(15, 61, 92);
+      }
+      .blearn a:active {
+        background-color: rgb(226, 226, 226);
+      }
+      footer {
+        background-color: rgb(15, 61, 92);
+        color: white;
+        padding: 50px 0 20px 0;
+        margin-top: 50px;
+      }
+
+      .footer-top {
+        display: flex;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 0 20px;
+      }
+
+      .footer-col {
+        width: 250px;
+      }
+      .footer-col h3 {
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+      .footer-col p,
+      .footer-col li {
+        font-size: 13px;
+        color: #cbd5e0;
+        line-height: 1.6;
+        list-style: none;
+      }
+      .footer-col a {
+        color: #cbd5e0;
+        text-decoration: none;
+      }
+      .footer-col a:hover {
+        color: orange;
+      }
+      .store-locations {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        border-top: 1px solid #244372;
+      }
+
+      .location-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        text-align: center;
+        font-size: 13px;
+        color: #cbd5e0;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #2d4a77;
+        font-size: 12px;
+        color: #a0aec0;
+      }
+
+      @media (max-width: 1100px) {
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          position: static;
+          margin-bottom: 20px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+        }
+
+        .filter-header {
+          grid-column: span 2;
+        }
+
+        .filter-section {
+          margin-bottom: 10px;
+        }
+
+        hr {
+          display: none;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .product-grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+
+        .sidebar {
+          grid-template-columns: 1fr;
+        }
+
+        .filter-header {
+          grid-column: span 1;
+        }
+
+        .navlog {
+          font-size: 18px;
+        }
+
+        .search-bar {
+          margin: 0 5px;
+        }
+
+        .product-card img {
+          height: 250px;
+        }
+        .store-locations h1 {
+          font-size: 20px !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .footer-top {
+          justify-content: flex-start;
+          padding-left: 30px;
+        }
+
+        .location-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .location-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 1024px) {
+        .footer-top {
+          grid-template-columns: repeat(2, minmax(220px, 1fr));
+        }
+      }
+
+      @media (max-width: 600px) {
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+
+        .location-grid {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .loc {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-col {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav1">
+      <div class="navlog">TechHouse Pro</div>
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" placeholder="Search..." />
+      </div>
+      <div class="icons">
+        <li><i style="padding-right: 7px" class="fa-solid fa-globe"></i>UZB</li>
+        <li>
+          <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
+        <li>
+          <a href="signup.html"><i class="fa-solid fa-user"></i></a>
+        </li>
+      </div>
+    </nav>
+
+    <nav class="nav2">
+      <ul class="menu">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/navigation/about.html">About</a></li>
+        <li><a id="active" href="/navigation/products.html">Products</a></li>
+        <li><a href="/navigation/members.html">Membership</a></li>
+        <li><a href="/navigation/support.html">Support</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <aside class="sidebar">
+        <div class="filter-header">
+          <h2>Filters</h2>
+          <a href="#" class="reset-btn">Reset</a>
+        </div>
+
+        <div class="filter-section">
+          <b>Category</b>
+          <li>
+            <input type="radio" name="cat" value="all" checked /> All Products
+          </li>
+          <li>
+            <input type="radio" name="cat" value="refrigerators" />
+            Refrigerators
+          </li>
+          <li>
+            <input type="radio" name="cat" value="washingmachines" /> Washing
+            Machines
+          </li>
+          <li><input type="radio" name="cat" value="tvs" /> TVs</li>
+          <li><input type="radio" name="cat" value="acs" /> ACs</li>
+          <li>
+            <input type="radio" name="cat" value="kitchenappliances" /> Kitchen
+            Appliances
+          </li>
+        </div>
+        <hr />
+        <div class="filter-section">
+          <b>Brand</b>
+          <li>
+            <input type="radio" name="brand" value="all" checked /> All Brands
+          </li>
+          <li><input type="radio" name="brand" value="samsung" /> Samsung</li>
+          <li><input type="radio" name="brand" value="lg" /> LG</li>
+          <li><input type="radio" name="brand" value="sony" /> Sony</li>
+          <li><input type="radio" name="brand" value="daikin" /> Daikin</li>
+          <li>
+            <input type="radio" name="brand" value="panasonic" /> Panasonic
+          </li>
+        </div>
+        <div class="filter-section">
+          <b>Energy Rating</b>
+          <li>
+            <input type="radio" name="energy" value="all" checked /> All Ratings
+          </li>
+          <li><input type="radio" name="energy" value="a++" /> A++</li>
+          <li><input type="radio" name="energy" value="a+" /> A+</li>
+          <li><input type="radio" name="energy" value="a" /> A</li>
+        </div>
+        <hr />
+        <div class="filter-section">
+          <b>Price Range</b>
+          <li>
+            <input type="radio" name="price" value="all" checked /> All Prices
+          </li>
+          <li>
+            <input type="radio" name="price" value="under20000" /> Under $20,000
+          </li>
+          <li>
+            <input type="radio" name="price" value="20000-40000" /> $20,000 -
+            $40,000
+          </li>
+          <li>
+            <input type="radio" name="price" value="40000-60000" /> $40,000 -
+            $60,000
+          </li>
+          <li>
+            <input type="radio" name="price" value="above60000" /> Above $60,000
+          </li>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <p class="results-meta">Showing 15 products</p>
+
+        <div class="product-grid">
+          <div
+            class="product-card"
+            data-category="refrigerators"
+            data-brand="samsung"
+          >
+            <img
+              src="https://ik.imagekit.io/Techhouse/refriger.jpg?updatedAt=1768908210551"
+              alt="Fridge"
+            />
+            <div class="product-info">
+              <span class="brand-name">Samsung</span>
+              <h3 class="product-title">PearlGold Double Door Refrigerator</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.5)</span>
+              </div>
+              <div class="blearn">
+                <aside>$49,99</aside>
+                <a href="/productdetail/refrigersam.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="product-card"
+            data-category="washingmachines"
+            data-brand="lg"
+          >
+            <img
+              src="https://ik.imagekit.io/Techhouse/washmach.jpg?updatedAt=1768908211296"
+              alt="Washing Machine"
+            />
+            <div class="product-info">
+              <span class="brand-name">LG</span>
+              <h3 class="product-title">WashMax Front Load Machine</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.0)</span>
+              </div>
+              <div class="blearn">
+                <aside>$29,99</aside>
+                <a href="/productdetail/washinlg.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="tvs" data-brand="sony">
+            <img
+              src="https://ik.imagekit.io/Techhouse/televizor.jpg?updatedAt=1768908211667"
+              alt=""
+            />
+            <div class="product-info">
+              <span class="brand-name">Sony</span>
+              <h3 class="product-title">UltraView 55" 4K Smart LED</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.5)</span>
+              </div>
+              <div class="blearn">
+                <aside>$29,99</aside>
+                <a href="/productdetail/tvsamsung.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="acs" data-brand="daikin">
+            <img
+              src="https://ik.imagekit.io/Techhouse/kondit.jpg?updatedAt=1768981122230"
+              alt=""
+            />
+            <div class="product-info">
+              <span class="brand-name">Daikin</span>
+              <h3 class="product-title">CoolBreeze 1.5 Ton Split AC</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.5)</span>
+              </div>
+              <div class="blearn">
+                <aside>$35,99</aside>
+                <a href="/productdetail/ac.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="product-card"
+            data-category="headphone"
+            data-brand="panasonic"
+          >
+            <img
+              src="https://ik.imagekit.io/Techhouse/headphone.jpg?updatedAt=1768981121305"
+              alt=""
+            />
+            <div class="product-info">
+              <span class="brand-name">Panasonic</span>
+              <h3 class="product-title">Noise Cancelling Headphones</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.2)</span>
+              </div>
+              <div class="blearn">
+                <aside>$12,99</aside>
+                <a href="/productdetail/headphone.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="product-card"
+            data-category="personalcare"
+            data-brand="dyson"
+          >
+            <img
+              src="https://ik.imagekit.io/Techhouse/dyson.jpg?updatedAt=1768981122862"
+              alt=""
+            />
+            <div class="product-info">
+              <span class="brand-name">Dyson</span>
+              <h3 class="product-title">Dyson Airwrap Co-anda2x</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.5)</span>
+              </div>
+              <div class="blearn">
+                <aside>$749,99</aside>
+                <a href="/productdetail/dyson.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="product-card"
+            data-category="washingmachines"
+            data-brand="ifb"
+          >
+            <img
+              src="https://ik.imagekit.io/Techhouse/washing.jpg?updatedAt=1768908210436"
+              alt=""
+            />
+            <div class="product-info">
+              <span class="brand-name">IFB</span>
+              <h3 class="product-title">TurboWash Top Load 6.5kg</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.4)</span>
+              </div>
+              <div class="blearn">
+                <aside>$18,99</aside>
+                <a href="/productdetail/yuvish.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="tvs" data-brand="lg">
+            <img
+              src="https://ik.imagekit.io/Techhouse/oynayijahon.jpg?updatedAt=1768908209839"
+              alt=""
+            />
+            <div class="product-info">
+              <span class="brand-name">LG</span>
+              <h3 class="product-title">CinemaView 65" OLED 4K TV</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.9)</span>
+              </div>
+              <div class="blearn">
+                <aside>$21,99</aside>
+                <a href="/productdetail/tvsamsung.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="toaster" data-brand="bosch">
+            <img
+              src="https://ik.imagekit.io/Techhouse/toaster.jpg?updatedAt=1768908212193"
+              alt="Headphones"
+            />
+            <div class="product-info">
+              <span class="brand-name">Bosch</span>
+              <h3 class="product-title">Toaster Bosch TA4T420</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.9)</span>
+              </div>
+              <div class="blearn">
+                <aside>$19,99</aside>
+                <a href="/productdetail/toaster.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="phone" data-brand="apple">
+            <img
+              src="https://ik.imagekit.io/Techhouse/iphone.jpg?updatedAt=1768981124739"
+              alt="Headphones"
+            />
+            <div class="product-info">
+              <span class="brand-name">Iphone</span>
+              <h3 class="product-title">Iphone 17 Pro Max</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.3)</span>
+              </div>
+              <div class="blearn">
+                <aside>$129,99</aside>
+                <a href="/productdetail/learnproducts.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="product-card"
+            data-category="headphones"
+            data-brand="oculus"
+          >
+            <img
+              src="https://ik.imagekit.io/Techhouse/d3.jpg?updatedAt=1768981123457"
+              alt="Headphones"
+            />
+            <div class="product-info">
+              <span class="brand-name">Oculus</span>
+              <h3 class="product-title">Meta Oculus Guest 3 (VR)</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.7)</span>
+              </div>
+              <div class="blearn">
+                <aside>$51,99</aside>
+                <a href="/productdetail/metaoculus.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="product-card"
+            data-category="kitchenappliances"
+            data-brand="daikin"
+          >
+            <img
+              src="https://ik.imagekit.io/Techhouse/dish.jpg?updatedAt=1768981123841"
+              alt="Headphones"
+            />
+            <div class="product-info">
+              <span class="brand-name">Daikin</span>
+              <h3 class="product-title">Dishe 12 WJ929H289</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.6)</span>
+              </div>
+              <div class="blearn">
+                <aside>$37,99</aside>
+                <a href="/productdetail/dishes.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="laptop" data-brand="hp">
+            <img
+              src="https://ik.imagekit.io/Techhouse/lap.jpg?updatedAt=1768981124741"
+              alt="Headphones"
+            />
+            <div class="product-info">
+              <span class="brand-name">HP</span>
+              <h3 class="product-title">HP 25 ATQI10PK</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.5)</span>
+              </div>
+              <div class="blearn">
+                <aside>$320,99</aside>
+                <a href="/productdetail/hp.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card" data-category="tvs" data-brand="samsung">
+            <img
+              src="https://ik.imagekit.io/Techhouse/tv.jpg?updatedAt=1768908210017"
+              alt="Headphones"
+            />
+            <div class="product-info">
+              <span class="brand-name">SAMSUNG</span>
+              <h3 class="product-title">Vision QG15 VAG75BIY 965</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.7)</span>
+              </div>
+              <div class="blearn">
+                <aside>$48,99</aside>
+                <a href="/productdetail/tvsale.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="product-card"
+            data-category="vacuumcleaner"
+            data-brand="mideas"
+          >
+            <img
+              src="https://ik.imagekit.io/Techhouse/pilesosnew.jpg?updatedAt=1768908211857"
+              alt="Headphones"
+            />
+            <div class="product-info">
+              <span class="brand-name">MIDEA</span>
+              <h3 class="product-title">Vacuum Cleaner 220</h3>
+              <div class="rating">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i
+                  style="color: rgb(204, 204, 204)"
+                  class="fa-solid fa-star"
+                ></i>
+                <span>(4.6)</span>
+              </div>
+              <div class="blearn">
+                <aside>$39,99</aside>
+                <a href="/productdetail/pilesos.html">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer-top">
+        <div class="footer-col">
+          <h3>TechHouse Pro</h3>
+          <p>
+            India's trusted home appliance retailer. Quality products, expert
+            service, nationwide warranty.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Support</a></li>
+        </div>
+        <div class="footer-col">
+          <h3>Customer Support</h3>
+          <li><a href="#">Warranty Policy</a></li>
+          <li><a href="#">Delivery Information</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Installation Service</a></li>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-phone"></i> 1800-123-4567</p>
+          <p><i class="far fa-envelope"></i> support@techhouse.pro</p>
+          <p>
+            <i class="far fa-location-dot"></i> Headquarters: Mumbai,
+            Maharashtra
+          </p>
+        </div>
+      </div>
+
+      <div class="store-locations">
+        <h1 style="text-align: center; margin-bottom: 20px">
+          Our Store Locations
+        </h1>
+        <div class="location-grid">
+          <ul>
+            <li><a href="#">Mumbai</a></li>
+            <li><a href="#">Kolkata</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Delhi</a></li>
+            <li><a href="#">Ahmedabad</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Bangalore</a></li>
+            <li><a href="#">Jaipur</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Hyderabad</a></li>
+            <li><a href="#">Lucknow</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Pune</a></li>
+            <li><a href="#">Indore</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Chennai</a></li>
+            <li><a href="#">Chandigarh</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2026 TechHouse Pro. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const searchInput = document.querySelector(".search-bar input");
+      const resetBtn = document.querySelector(".reset-btn");
+      const resultsCountEl = document.querySelector(".results-meta");
+      const productCards = document.querySelectorAll(".product-card");
+
+      function filterProducts() {
+        const selectedCategory =
+          document.querySelector('input[name="cat"]:checked')?.value || "all";
+        const selectedBrand =
+          document.querySelector('input[name="brand"]:checked')?.value || "all";
+        const selectedEnergy =
+          document.querySelector('input[name="energy"]:checked')?.value ||
+          "all";
+        const selectedPrice =
+          document.querySelector('input[name="price"]:checked')?.value || "all";
+
+        const searchText = searchInput.value.toLowerCase().trim();
+
+        let visibleCount = 0;
+
+        productCards.forEach((card) => {
+          const cardCategory = card.getAttribute("data-category") || "";
+          const cardBrand = card.getAttribute("data-brand") || "";
+          const cardTitle = card
+            .querySelector(".product-title")
+            .textContent.toLowerCase();
+          const cardBrandName = card
+            .querySelector(".brand-name")
+            .textContent.toLowerCase();
+          const priceText = card.querySelector(".blearn aside").textContent;
+          const price = parseFloat(priceText.replace(/[^0-9.]/g, ""));
+
+          let categoryMatch =
+            selectedCategory === "all" || cardCategory === selectedCategory;
+
+          let brandMatch =
+            selectedBrand === "all" || cardBrand === selectedBrand;
+
+          let energyMatch = selectedEnergy === "all";
+
+          let priceMatch = true;
+          if (selectedPrice === "under20000") {
+            priceMatch = price < 20000;
+          } else if (selectedPrice === "20000-40000") {
+            priceMatch = price >= 20000 && price <= 40000;
+          } else if (selectedPrice === "40000-60000") {
+            priceMatch = price > 40000 && price <= 60000;
+          } else if (selectedPrice === "above60000") {
+            priceMatch = price > 60000;
+          }
+
+          let searchMatch =
+            searchText === "" ||
+            cardTitle.includes(searchText) ||
+            cardBrandName.includes(searchText);
+
+          if (
+            categoryMatch &&
+            brandMatch &&
+            energyMatch &&
+            priceMatch &&
+            searchMatch
+          ) {
+            card.style.display = "";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        resultsCountEl.textContent = `Showing ${visibleCount} products`;
+      }
+
+      document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+        radio.addEventListener("change", filterProducts);
+      });
+
+      searchInput.addEventListener("input", filterProducts);
+
+      resetBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        document.querySelector('input[name="cat"][value="all"]').checked = true;
+        document.querySelector('input[name="brand"][value="all"]').checked =
+          true;
+        document.querySelector('input[name="energy"][value="all"]').checked =
+          true;
+        document.querySelector('input[name="price"][value="all"]').checked =
+          true;
+
+        searchInput.value = "";
+
+        filterProducts();
+      });
+    </script>
+  </body>
+</html>

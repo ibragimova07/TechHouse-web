@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memberships</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f1f3f6;
+}
+
+.nav1 {
+    width: 100%;
+    min-height: 70px;
+    background-color: rgb(15, 61, 92);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    position: sticky;
+    top: 0;
+    z-index: 1001; 
+}
+
+.navlog {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.search-bar {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    padding: 9px 15px 9px 40px;
+    border-radius: 20px;
+    border: none;
+    width: 100%; 
+}
+
+.search-bar i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.icons a {
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+}
+.icons a:hover{
+    background-color: white;
+    color: rgb(15, 61, 92);
+    border-radius: 20px;
+}
+.nav2 {
+    width: 100%;
+    min-height: 60px;
+    background-color: #fffafa;
+    color: rgb(15, 61, 92);
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    position: sticky;
+    top: 70px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu {
+    display: flex;
+    margin: auto;
+    list-style: none;
+    gap: 30px;
+}
+
+.menu a {
+    padding: 9px 15px;
+    color: rgb(15, 61, 92);
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.menu a:hover, #active {
+    background-color: rgb(15, 61, 92);
+    color: white !important;
+    border-radius: 8px;
+}
+
+#menu-toggle, .hamburger {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .nav1 { padding: 0 20px; }
+    .nav2 { padding: 0 20px; }
+    .search-bar { max-width: 300px; }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .nav1 {
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .search-bar {
+        order: 3; 
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .menu {
+        position: absolute;
+        top: 60px;
+        left: -100%; 
+        flex-direction: column;
+        background-color: #fffafa;
+        width: 100%;
+        text-align: center;
+        gap: 0;
+        transition: 0.4s;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .menu a {
+        display: block;
+        padding: 20px;
+    }
+
+    #menu-toggle:checked ~ .menu {
+        left: 0;
+    }
+}
+    .mconcards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+.cardmember{
+    min-width: 250px;
+    border: 1px solid rgb(194, 193, 193);
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 20px; 
+    background-color: #f1f3f6;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 20px;
+}
+.cardmember div{
+    text-align: justify;
+    padding: 10px;
+    font-size: 15px;
+}
+.cardmember button{
+    padding: 8px 60px;
+    font-size: 17px;
+    color: white;
+    background-color: rgb(15, 61, 92);
+    border-radius: 20px;
+    border: none;
+}
+.cardmember button:hover{
+    border: 1px solid rgb(15, 61, 92);
+    background-color: white;
+    color: rgb(15, 61, 92);
+}
+.cardmember button:active{
+    background-color: rgb(226, 226, 226);
+}
+
+@media (max-width: 600px) {
+    .cardmember{
+        width: 100%;
+    }
+    .pg h1{
+    font-size: 20px;
+}
+}
+.comment{
+    text-align: center;
+    padding-top: 50px;
+}
+.commentc{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: center;
+    text-align: justify;
+    gap: 30px;
+    margin-top: 60px;
+}
+.comment1{
+    max-width: 650px;
+    padding: 20px;
+    border: 1px solid rgb(15, 61, 92);
+    border-radius: 13px;
+}
+.comment1 p{
+    color: grey;
+    font-style: italic;
+    padding-top: 15px;
+}
+.comment1 i{
+    padding-top: 10px;
+    color: gold;
+}
+
+@media (max-width: 600px) {
+    .comment h1{
+        font-size: 20px;
+    }
+    .commentc{
+    padding: 10px;
+
+    }
+}
+.p5{
+    padding-bottom: 100px;
+}
+.lcw{
+        text-align: center;
+        padding: 100px;
+        justify-content: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .lcw h1{
+        padding-bottom: 20px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .lcw p{
+         color: rgb(95, 95, 95);
+        font-size: 19px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    @media (max-width: 600px) {
+        .lcw{
+            padding: 20px;
+        }
+        .lcw h1{
+            font-size: 20px;
+        }
+        .lcw p{
+            font-size: 16px;
+        }
+    }
+    .warranty{
+        align-items: center;
+        justify-content: center;
+         display: flex;
+         gap: 50px;
+    }p1
+    .w1{
+          padding: 20px 60px;
+          border: 1px solid rgb(197, 197, 197);
+          border-radius: 10px;
+    }
+    .w1:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transform: translate(-1px, -1px) scale(1.05);
+}
+    .w1 h2{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .w1 p{
+        padding-right: 120px;
+        padding-top: 15px;
+        letter-spacing: 1.1px;
+    }
+    .w1 i {
+        color: blue;
+    }
+    @media (max-width: 600px) {
+        .warranty{
+            gap: 10px;
+        }
+        .warranty h2{
+            font-size: 20px !important;
+        }
+        .warranty p{
+            font-size: 16px !important;
+        }
+        .w1{
+            margin: 10px;
+            padding: 20px 20px;
+        }
+        .comment{
+            padding-top: 0;
+        }
+    }
+    .location-grid li{
+            list-style: none;
+        }
+        .location-grid a{
+            text-decoration: none;
+            color: white;
+            
+        }
+    footer {
+            background-color: rgb(15,61,92);
+            color: white;
+            padding: 50px 0 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .footer-col { width: 250px; }
+        .footer-col h3 { margin-bottom: 20px; font-size: 18px; }
+        .footer-col p, .footer-col li { font-size: 13px; color: #cbd5e0; line-height: 1.6; list-style: none;}
+        .footer-col a { color: #cbd5e0; text-decoration: none; }
+        .footer-col a:hover{
+            color: orange;
+        }
+        .store-locations {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            border-top: 1px solid #244372;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #cbd5e0;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d4a77;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+        @media (max-width: 1024px) {
+    .container {
+        flex-direction: column; 
+        gap: 20px;
+    }
+    
+    .sidebar {
+        width: 100%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .nav1 {
+        padding: 0 20px;
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 15px;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    .nav2 .menu {
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .cart-card {
+        flex-direction: column; 
+        text-align: center;
+    }
+
+    .cart-card img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+
+    .item-title-price {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .item-details {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column; 
+        gap: 20px;
+    }
+    
+    .sidebar {
+        width: 100%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .nav1 {
+        padding: 0 20px;
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 15px;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    .nav2 .menu {
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .cart-card {
+        flex-direction: column; 
+        text-align: center;
+    }
+
+    .cart-card img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+
+    .item-title-price {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .item-details {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .location-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr; 
+    }
+
+    .location-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav2 .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .item-title-price h2 {
+        font-size: 18px;
+    }
+
+    .price-text {
+        font-size: 18px;
+    }
+}
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .location-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr; 
+    }
+
+    .location-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav2 .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .item-title-price h2 {
+        font-size: 18px;
+    }
+
+    .price-text {
+        font-size: 18px;
+    }
+}
+
+
+@media (max-width: 768px){
+  .warranty{
+    flex-direction: column;
+  }
+}
+@media (max-width: 1024px){
+  .footer-top{
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 600px){
+  .footer-top{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+
+  .location-grid{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .loc{
+    grid-template-columns: 1fr 1fr;  
+  }
+  .footer-col{
+    width: 100%;
+  }
+}
+</style>
+<body>
+     <nav class="nav1">
+    <div class="navlog">TechHouse Pro</div>
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search...">
+        </div>
+        <div class="icons">
+            <li><i style="padding-right: 7px;" class="fa-solid fa-globe"></i>UZB</li>
+            <li><a href="/navigation/cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <li><a href="/navigation/signup.html"><i class="fa-solid fa-user"></i></a></li>
+        </div>
+    </nav>
+    <nav class="nav2">
+        <ul class="menu">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/navigation/about.html">About</a></li>
+            <li><a href="/navigation/products.html">Products</a></li>
+            <li><a id="active" href="/navigation/members.html">Membership</a></li>
+            <li><a href="/navigation/support.html">Support</a></li>
+        </ul>
+    </nav>
+
+<div class="membership">
+    <div class="pg" style="background-color: #f1f3f6; text-align: center; margin-top: 70px;">
+        <h1>Our Memberships</h1>
+    </div>
+    <div class="mconcards" style="background-color: #f1f3f6;">
+        <div class="cardmember" style="background-color: #d8a85e;">
+            <h3>Bronze</h3>
+              <p><b style="font-size: 35px;color: black;">$10.00</b><sub>/Month</sub></p>
+              <div class="jusytifymember">
+                <p> <i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Access to exclusive discounts</p>
+                <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Early access to new products</p>
+                  <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Monthly newsletters with tips & updates</p>
+                    <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Members-onnly online tutorials</p>
+              </div>
+              <button>Join Membership</button>
+        </div>
+        <div class="cardmember" style="background-color: #e7e7e7;">
+            <h3>Silver</h3>
+              <p><b style="font-size: 35px;color: black;">$15.00</b><sub>/Month</sub></p>
+              <div class="jusytifymember">
+                <p> <i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Free standard delivery on oreders </p>
+                <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Priority customer support</p>
+                  <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Special member-only promotions</p>
+                    <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Seasonal DIY guides & hacks</p>
+              </div>
+              <button>Join Membership</button>
+        </div>
+        <div class="cardmember" style="background-color: #f0c42d;">
+            <h3>Gold</h3>
+              <p><b style="font-size: 35px;color: black;">$20.00</b><sub>/Month</sub></p>
+              <div class="jusytifymember">
+                <p> <i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Free express delivery </p>
+                <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Invitations to special events/workshops</p>
+                  <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Extended warranty on selected products</p>
+                    <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Personalized products recommendations</p>
+              </div>
+              <button>Join Membership</button>
+        </div>
+        <div class="cardmember"style="background-color: #cadae5;" >
+            <h3>Business</h3>
+              <p><b style="font-size: 35px;color: black;">$50.00</b><sub>/Month</sub></p>
+              <div class="jusytifymember">
+                <p> <i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Dedicated account manager</p>
+                <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Bulk order discounts</p>
+                  <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Priority support & service any locations</p>
+                    <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Customized business solutions</p>
+              </div>
+              <button>Join Membership</button>
+        </div>
+    </div>
+</div>
+<div class="comment">
+    <h1>Comments from Users</h1>
+    <div class="commentc">
+    <div class="comment1">
+        <h3> - Rahimova A</h3>
+         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <p>Every product feels premium, well-enginereed, and relaible. From the first use, I could tell this was not just another electronic store.</p>
+    </div>
+     <div class="comment1">
+        <h3> -  Daniel B</h3>
+         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <p>TechHouse products are on another level. The performance, durability, and design all match what they promise. What impressed me most is consistency.</p>
+    </div>
+     <div class="comment1">
+        <h3> - Karimova F</h3>
+         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <p>I saved for weeks to buy my first TechHouse product, and it was worth every coin. You can feel that these products are made with thought. TechHouse earned my trust with one purchase.</p>
+    </div>
+     <div class="comment1">
+        <h3> - Michael T</h3>
+         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <p>“I have tested many brands, and TechHouse stands out for one simple reason: they care.And the experience feels premium from start to finish. </p>
+    </div>
+    </div>
+</div>
+ <div class="p5">
+           <div class="lcw"><h1>Service & Warranty</h1>
+            <p>All products purchased from TechHouse come with manufacturer warranty and our extended <br> service guarantee. Our network of 100+ service centers ensures quick and reliable maintenance <br> support.</p>
+            </div>
+             <div class="warranty">
+                 <div class="w1">
+                    <h2>Warranty Coverage</h2>
+                    <p><i style="padding-right: 15px;" class="fa-solid fa-check"></i>  Manufacturer warranty on all products</p>
+                     <p><i style="padding-right: 15px;" class="fa-solid fa-check"></i>Extended warranty plans available</p>
+                      <p><i style="padding-right: 15px;" class="fa-solid fa-check"></i>Free repairs during warranty period</p>
+                       <p><i style="padding-right: 15px;" class="fa-solid fa-check"></i>Replacement for manufacturing defects</p>
+                 </div> 
+                 <div class="w1">
+                    <h2>Service Promise</h2>
+                     <p><i style="padding-right: 15px;" class="fa-solid fa-check"></i>Same-day service request registration</p>
+                      <p><i style="padding-right: 15px;" class="fa-solid fa-check"></i>Doorstep service available</p>
+                       <p><i style="padding-right: 15px;" class="fa-solid fa-check"></i>Genuine spare parts only</p>
+                        <p><i style="padding-right: 15px;" class="fa-solid fa-check"></i>Certified service technicians</p>
+                 </div>    
+            </div>
+        </div>
+          <footer>
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3>TechHouse Pro</h3>
+                <p>India's trusted home appliance retailer. Quality products, expert service, nationwide warranty.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Support</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Support</h3>
+                <li><a href="#">Warranty Policy</a></li>
+                <li><a href="#">Delivery Information</a></li>
+                <li><a href="#">Returns & Exchanges</a></li>
+                <li><a href="#">Installation Service</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 1800-123-4567</p>
+                <p><i class="far fa-envelope"></i> support@techhouse.pro</p>
+                <p><i class="far fa-location-dot"></i> Headquarters: Mumbai, Maharashtra</p>
+            </div>
+        </div>
+
+        <div class="store-locations">
+            <h1 style="text-align:center; margin-bottom:20px">Our Store Locations</h1>
+            <div class="location-grid">
+                <ul>
+                    <li><a href="#">Mumbai</a></li>
+                    <li><a href="#">Kolkata</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Delhi</a></li>
+                    <li><a href="#">Ahmedabad</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Bangalore</a></li>
+                    <li><a href="#">Jaipur</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Hyderabad</a></li>
+                    <li><a href="#">Lucknow</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Pune</a></li>
+                    <li><a href="#">Indore</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Chennai</a></li>
+                    <li><a href="#">Chandigarh</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 TechHouse Pro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn more products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1f3f6;
+        }
+
+        .nav1 {
+            width: 100%;
+            min-height: 70px;
+            background-color: rgb(15, 61, 92);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .navlog { font-size: 24px; font-weight: bold; }
+        .search-bar { position: relative; }
+        .search-bar input {
+            padding: 9px 15px 9px 40px;
+            border-radius: 20px;
+            border: none;
+            width: 500px;
+            max-width: 100%;
+        }
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .icons {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+        .icons a { color: white; text-decoration: none; padding: 8px; }
+        .icons a:hover { background-color: white; color: rgb(15, 61, 92); border-radius: 17px; }
+
+        .nav2 {
+            width: 100%;
+            min-height: 60px;
+            background-color: #fffafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .menu { display: flex; list-style: none; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .menu a { padding: 9px 15px; color: rgb(15, 61, 92); text-decoration: none; font-size: 16px; }
+
+        .learncontainer {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .productex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .image-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 400px;
+        }
+        .product1 img {
+            width: 100%;
+            height: 580px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+        
+        .product3 {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        .product3 img {
+            width: calc(33.33% - 7px);
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product2 {
+            flex: 1;
+            min-width: 320px;
+            max-width: 700px;
+            text-align: left; 
+        }
+        
+        .product2 h1 { font-size: 28px; line-height: 1.2; margin-bottom: 15px; }
+
+        .color { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .color button { width: 35px; height: 35px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+        .color button:hover { border-color: orange; }
+        .color span { border: 1px solid #ccc; padding: 6px 15px; border-radius: 20px; cursor: pointer; }
+        .color span:hover { border: 2px solid orange; }
+
+.location-grid li{
+            list-style: none;
+        }
+        .location-grid a{
+            text-decoration: none;
+            color: white;
+            
+        }
+        .apart {
+            display: flex;
+            gap: 50px;
+            margin-top: 15px;
+            justify-content: flex-start; 
+        }
+        .leftinfo p { padding: 5px 0; color: #555; font-size: 15px; }
+        .rightinfo p { padding: 5px 0; font-weight: 600; font-size: 15px; }
+
+        .innerbutton {
+            margin-top: 30px;
+            padding: 12px 80px;
+            font-size: 17px;
+            border-radius: 12px;
+            border: 1px solid rgb(15, 61, 92);
+            background-color: rgb(15, 61, 92);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .innerbutton:hover { background-color: white; color: rgb(15, 61, 92); }
+
+        footer { background-color: rgb(15, 61, 92); color: white; padding: 50px 20px 20px; margin-top: 70px; }
+        .footer-top { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .footer-col { width: 250px; }
+        .footer-col li { list-style: none; margin-bottom: 8px; font-size: 14px; }
+        .footer-col a { color: #cbd5e0; text-decoration: none; }
+        .location-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; text-align: center; padding: 20px 0; }
+
+        @media (max-width: 1024px) {
+            .nav1 { padding: 15px 20px; }
+            .search-bar input { width: 100%; }
+            .productex { flex-direction: column; align-items: center; }
+            .image-section { width: 100%; max-width: 500px; }
+            .product1 img { height: auto; }
+        }
+
+        @media (max-width: 600px) {
+            .location-grid { grid-template-columns: repeat(2, 1fr); }
+            .apart { gap: 20px; }
+            .innerbutton { width: 100%; }
+        }
+        
+
+@media (max-width: 1024px) {
+    .nav1 {
+        justify-content: center;
+        padding: 20px;
+    }
+    .search-bar {
+        order: 3; 
+        width: 100%;
+    }
+    .search-bar input {
+        width: 100%;
+    }
+    .productex {
+        flex-direction: column;
+        align-items: center;
+    }
+    .image-section {
+        width: 100%;
+        max-width: 500px;
+    }
+    .product2 {
+        text-align: center;
+        padding: 0 10px;
+    }
+    .apart {
+        justify-content: center; 
+    }
+}
+
+@media (max-width: 768px) {
+    .menu {
+        gap: 10px;
+    }
+    .menu a {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+    .product1 img {
+        height: auto; 
+        max-height: 450px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navlog { font-size: 20px; }
+    .icons { gap: 10px; font-size: 14px; }
+    .apart {
+
+        gap: 8px;
+        align-items: start;
+        justify-content: space-between;
+    }
+    .leftinfo { text-align: start; }
+    .innerbutton {
+        width: 100%;
+        padding: 15px 0;
+    }
+    .location-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+    </style>
+</head>
+<body>
+
+    <nav class="nav1">
+        <div class="navlog">TechHouse Pro</div>
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search...">
+        </div>
+        <div class="icons">
+            <li><i class="fa-solid fa-globe"></i> UZB</li>
+            <li>
+                <a id="cart" href="#" style="position: relative;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-count" style="position: absolute; top: -10px; right: -10px; background-color: red; color: white; font-size: 10px; padding: 2px 6px; border-radius: 50%; display: none;">0</span>
+                </a>
+            </li>
+            <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
+        </div>
+    </nav>
+
+    <nav class="nav2">
+        <ul class="menu">
+            <li><a href="/index.html">Home</a></li>
+              <li><a  href="/navigation/about.html">About</a></li>
+               <li><a href="/navigation/products.html">Products</a></li>
+             <li><a href="/navigation/members.html">Membership</a></li>
+            <li><a href="/navigation/">Support</a></li>
+        </ul>
+    </nav>
+
+    <div class="learncontainer">
+        <div class="productex">
+            <div class="image-section">
+                <div class="product1">
+                    <img src="https://ik.imagekit.io/Techhouse/iphone.jpg?updatedAt=1768981124739" alt="Main View">
+                </div>
+                <div class="product3">
+                    <img src="https://ik.imagekit.io/Techhouse/1iphone.jpg?updatedAt=1768908202240" alt="view 1">
+                    <img src="https://ik.imagekit.io/Techhouse/2iphone.jpg?updatedAt=1768908204309" alt="view 2">
+                    <img src="https://ik.imagekit.io/Techhouse/4iphone.jpg?updatedAt=1768981118800" alt="view 3">
+                </div>
+            </div>
+
+            <div class="product2">
+                <h1>Phone Apple IPhone 17 Pro Max 256 GB Silver in Tashkent</h1>
+                
+                <div class="color">
+                    <p style="color: #666; font-size: 18px;">Color:</p>
+                    <button style="background-color: #262972;"></button>
+                    <button style="background-color: #ccc;"></button>
+                    <button style="background-color: orange;"></button>
+                </div>
+
+                <div class="color">
+                    <span>256 GB</span>
+                    <span>512 GB</span>
+                </div>
+
+                <div class="color">
+                    <aside id="minus" style="cursor:pointer; font-size: 20px;">-</aside>
+                    <aside id="quantity" style="border: 1px solid #ddd; padding: 2px 10px; border-radius: 4px;">1</aside>
+                    <aside id="plus" style="cursor:pointer; font-size: 20px;">+</aside>
+                </div>
+
+                <p style="margin-top: 20px;"><b style="font-size: 35px; color: black;">$1,729</b><sub>,99</sub></p>
+
+                <h4 style="margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Characteristics</h4>
+                <div class="apart">
+                    <div class="leftinfo">
+                        <p>Processor:</p>
+                        <p>Operating system:</p>
+                        <p>Screen size:</p>
+                        <p>Battery capacity:</p>
+                        <p>RAM:</p>
+                    </div>
+                    <div class="rightinfo">
+                        <p>Apple A19 Pro</p>
+                        <p>iOS 26</p>
+                        <p>6.9 inches</p>
+                        <p>4700 mAh</p>
+                        <p>12 GB</p>
+                    </div>
+                </div>
+
+                <button class="innerbutton">Add to cart</button>
+            </div>
+        </div>
+    </div>
+ <script>
+    const minusBtn = document.getElementById('minus');
+    const plusBtn = document.getElementById('plus');
+    const quantityDisplay = document.getElementById('quantity');
+    const addToCartBtn = document.querySelector('.innerbutton');
+
+    let currentQty = 1;
+
+
+    if (plusBtn && minusBtn) {
+        plusBtn.onclick = () => {
+            currentQty++;
+            quantityDisplay.innerText = currentQty;
+        };
+        minusBtn.onclick = () => {
+            if (currentQty > 1) {
+                currentQty--;
+                quantityDisplay.innerText = currentQty;
+            }
+        };
+    }
+
+    addToCartBtn.onclick = function() {
+    
+        const product = {
+    
+            name: document.querySelector('.product2 h1').innerText,
+            
+            price: parseFloat(document.querySelector('.product2 b').innerText.replace('$', '').replace(',', '')),
+
+            image: document.querySelector('.product1 img').src,
+            quantity: currentQty,
+            color: "Standard",
+            barcode: "BC-" + Math.floor(Math.random() * 1000000)
+        };
+
+    
+        let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+
+        const existingIndex = cart.findIndex(item => item.name === product.name);
+        if (existingIndex > -1) {
+            cart[existingIndex].quantity += product.quantity;
+        } else {
+            cart.push(product);
+        }
+
+        localStorage.setItem('myCart', JSON.stringify(cart));
+
+
+        window.location.href = "/navigation/cart.html";
+    };
+</script>
+     <footer>
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3>TechHouse Pro</h3>
+                <p>India's trusted home appliance retailer. Quality products, expert service, nationwide warranty.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Support</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Support</h3>
+                <li><a href="#">Warranty Policy</a></li>
+                <li><a href="#">Delivery Information</a></li>
+                <li><a href="#">Returns & Exchanges</a></li>
+                <li><a href="#">Installation Service</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 1800-123-4567</p>
+                <p><i class="far fa-envelope"></i> support@techhouse.pro</p>
+                <p><i class="far fa-location-dot"></i> Headquarters: Mumbai, Maharashtra</p>
+            </div>
+        </div>
+
+        <div class="store-locations">
+            <h1 style="text-align:center; margin-bottom:20px">Our Store Locations</h1>
+            <div class="location-grid">
+                <ul>
+                    <li><a href="#">Mumbai</a></li>
+                    <li><a href="#">Kolkata</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Delhi</a></li>
+                    <li><a href="#">Ahmedabad</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Bangalore</a></li>
+                    <li><a href="#">Jaipur</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Hyderabad</a></li>
+                    <li><a href="#">Lucknow</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Pune</a></li>
+                    <li><a href="#">Indore</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Chennai</a></li>
+                    <li><a href="#">Chandigarh</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 TechHouse Pro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
