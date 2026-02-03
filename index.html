@@ -100,7 +100,7 @@ body {
     margin: auto;
     list-style: none;
     gap: 30px;
-    flex-wrap: wrap; /* This allows items to wrap if needed */
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -207,11 +207,7 @@ body {
             padding-bottom: 40px;
 
         }
-        /* @media (max-width: 600px) {
-            .pimg img{
-                
-            }
-        } */
+    
     .page{
         position: relative;
         padding-top: 70px;
@@ -259,12 +255,15 @@ body {
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     .cards{
+        overflow-x: scroll;
+        scrollbar-width: none;
         padding-top: 30px;
         display: flex;
         /* flex-wrap: wrap; */
         justify-content: center;
         gap: 60px;
     }
+
     .c1:hover{
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
@@ -303,6 +302,11 @@ body {
         padding-top: 70px;
         text-align: center;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    @media screen and (max-width: 992px) {
+        .cards{
+            justify-content: start;
+        }
     }
     @media screen and (max-width: 600px) {
         .cards{
